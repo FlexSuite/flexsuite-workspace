@@ -2,42 +2,54 @@ import { ISidebarItem } from "@/interfaces/ISidebarItem"
 import React from "react"
 
 import { SearchNavbarInput } from "../navbar/SearchNavbarInput"
+import { SidebarItem } from "./SidebarItem"
+import { FaMoneyBillTransfer } from "react-icons/fa6"
+import { BsCashCoin } from "react-icons/bs"
+import { IoSettingsSharp } from "react-icons/io5"
 
 export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
 
     const items: ISidebarItem[] = [
-        
+        {
+            id: 1,
+            label: 'Faturas',
+            path: '/revenue/invoices',
+            icon: <FaMoneyBillTransfer />,
+        },
+        {
+            id: 2,
+            label: 'Cobranças',
+            path: '/revenue/billing',
+            icon: <BsCashCoin  />,
+        },
+        {
+            id: 3,
+            label: 'Configurações',
+            path: '/revenue/settings',
+            icon: <IoSettingsSharp />,
+        },
     ]
 
-    function SidebarItem({item}: {item:ISidebarItem}){
-
-        return  <li>
-                    <a href={item.path} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        {
-                            item.icon && React.cloneElement(item.icon)
-                        }
-                        <span className="ms-3">{item.label}</span>
-                    </a>
-                </li>
-    }
     return (
         <>
             <aside 
-                className="fixed top-0 left-0 z-40 w-64 h-screen pt-12 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+                className="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
                 aria-label="Sidenav"
                 id="drawer-navigation"
             >
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                <div className="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
                 
-                <ul className="space-y-2 font-medium">
-                    <li>
-                        <SearchNavbarInput mobile sidebar/>
-                    </li>
-                    {
-                        items.map(item => <SidebarItem key={`sidebar-item-${item.id}`} item={item}/>)
-                    }                    
-                </ul>
+                    <ul className="space-y-2 font-medium">
+                        <li>
+                            <SearchNavbarInput mobile sidebar/>
+                        </li>
+                        {
+                            items.map(item => <SidebarItem key={`sidebar-item-${item.id}`} item={item}/>)
+                        }                    
+                    </ul>
                 </div>
+
+
                 <div
         className=" absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full flex dark:bg-gray-800 z-20"
         >
@@ -71,7 +83,7 @@ export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
                 clipRule="evenodd"
                 ></path>
@@ -149,7 +161,7 @@ export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
                         id="flag-icon-css-us"
                         viewBox="0 0 512 512"
                     >
-                        <g fill-rule="evenodd">
+                        <g fillRule="evenodd">
                         <g strokeWidth="1pt">
                             <path
                             fill="#bd3d44"
@@ -214,7 +226,7 @@ export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
                         id="flag-icon-css-it"
                         viewBox="0 0 512 512"
                     >
-                        <g fill-rule="evenodd" strokeWidth="1pt">
+                        <g fillRule="evenodd" strokeWidth="1pt">
                         <path fill="#fff" d="M0 0h512v512H0z" />
                         <path fill="#009246" d="M0 0h170.7v512H0z" />
                         <path fill="#ce2b37" d="M341.3 0H512v512H341.3z" />
