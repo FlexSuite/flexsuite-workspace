@@ -1,20 +1,20 @@
-import dynamic from "next/dynamic"
-import React from "react"
+import { FlexSuiteRevenuePages } from "@/enum/FlexSuiteNavigation"
+import React, { useEffect } from "react"
+import { RevenueModule } from "../RevenueModule"
 
 export function Settings(){
-    const [hasError, setHasError] = React.useState(false)
-    try{
-        const Module = dynamic(() => import("fatur/settings")
-            .then((mod) => mod)
-            .catch(e => {
-                // eslint-disable-next-line no-console
-                console.log('RevenueModule error',e)
-                setHasError(true)
-            }), { ssr: false })
-        if(hasError) throw new Error('Erro ao carregar o módulo Faturamento / Configurações')
-                    
-        return  <Module/>
-    }catch(e: any){
-        return <div>{e.message}</div>
-    }
+    const [ActualPage, setActualPage] = React.useState<any>()
+    const [loading, setLoading] = React.useState(true)
+
+    useEffect(()=>{
+        new RevenueModule((mod)=>{
+            setActualPage(mod.page(FlexSuiteRevenuePages.SETTINGS))
+            setLoading(false)
+        })
+    },[])
+
+    if(!ActualPage || loading)
+        return <>Carregando...</>
+
+    return ActualPage
 }
