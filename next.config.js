@@ -44,7 +44,7 @@ const nextConfig = {
         },
       })
     )
-    config.output.publicPath = ""
+    config.output.publicPath = "http://localhost:3000/"
     return config
   },
 }
