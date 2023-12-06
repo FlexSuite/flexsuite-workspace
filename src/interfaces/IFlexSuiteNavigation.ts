@@ -1,4 +1,4 @@
-import { FlexSuiteModules } from "@/enum/FlexSuiteNavigation"
+import { FlexSuiteModules, ModuleRoutes, NavigationModules, NavigationPages } from "@/enum/FlexSuiteNavigation"
 
 interface IFlexSuiteNavigationModule{
     name: string
@@ -18,3 +18,10 @@ interface IFlexSuiteNavigationPage {
 export type IFlexSuiteNavigation = {
     [key in FlexSuiteModules]: IFlexSuiteNavigationModule
 }
+
+export type IFlexSuiteNavigationContext = {
+    module: NavigationModules | undefined,
+    page: NavigationPages | undefined,
+    routes: ModuleRoutes | undefined,
+    allRoutes: ModuleRoutes | undefined
+  }

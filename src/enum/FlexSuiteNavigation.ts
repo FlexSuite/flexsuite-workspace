@@ -1,13 +1,32 @@
 export enum FlexSuiteModules{
-    'REVENUE', //Faturamento
+    'DASHBOARD' = 'Dashboard',
+    'REVENUE' = 'Revenue', //Faturamento
 }
 
 export enum FlexSuiteCommonPages{
-    'HOME',
+    'HOME' = 'Home',
 }
 
 export enum FlexSuiteRevenuePages {
-    'BILLING' = 'Billing',
-    'INVOICES' = 'Invoices',
-    'SETTINGS' = 'Settings',
+    'BILLING' = 'Billing', //Cobranças
+    'INVOICES' = 'Invoices', //Faturas
+    'SETTINGS' = 'Settings', //Configurações
 }
+
+export type ModuleRoutes = {
+    [module in NavigationModules]: ModulePages
+}
+
+export type ModulePages = {
+    [page in NavigationPages]?: string
+}
+
+export type NavigationPages = (
+
+        FlexSuiteCommonPages | 
+        FlexSuiteRevenuePages
+
+    )
+
+    
+export type NavigationModules = FlexSuiteModules
