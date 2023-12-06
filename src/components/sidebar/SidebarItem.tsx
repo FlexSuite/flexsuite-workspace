@@ -1,12 +1,13 @@
 import { ISidebarItem } from "@/interfaces/ISidebarItem"
 import React from "react"
+import { FaAngleDown } from "react-icons/fa"
 
-export function SidebarItem({item}:{item:ISidebarItem}) {
-    const dropdownId = `dropdown-${item.label.replace(" ", "-").toLowerCase()}-${item.id}`
+export function SidebarItem({ item, isAChild }:{item: ISidebarItem,isAChild?:boolean}) {
+    const dropdownId = item.children ? `dropdown-${item.label.replace(" ", "-").toLowerCase()}-${item.id}` : undefined
 
     return (
         <li>
-            <GenerateMenuButton>
+            <GenerateMenuButton isAChild={isAChild}>
                 <>
 
                 {
@@ -32,31 +33,37 @@ export function SidebarItem({item}:{item:ISidebarItem}) {
         </li>
     )
     function GenerateDropdown(){
+        if(!item.children) return (<></>)
         return (
             <ul id={dropdownId} className="hidden py-2 space-y-2">
                 {
                     item.children?.map((child, index) => {
-                        return <SidebarItem key={index} item={child} />
+                        return <SidebarItem key={index} item={child} isAChild/>
                     })
                 }
             </ul>
         )
     }
-    function GenerateMenuButton({children}:{children:any}){
-        if(!item.children || item.children.length == 0)
-            return  <a
-                        href={item.path}
-                        className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            {children}
-                    </a>
+    function GenerateMenuButton({ children, isAChild }:{ children:any, isAChild?:boolean }){
+        const btnId = `btn-${item.label.replace(" ", "-").toLowerCase()}-${item.id}`
 
         return <button
                 type="button"
-                className="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                id={btnId}
+                className={`${isAChild? 'pl-5': ''} flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                 aria-controls={dropdownId}
                 data-collapse-toggle={dropdownId}
                 >
                     {children}
+                    {
+                        item.children != undefined ?
+                        <span className="ms-5">
+                            <FaAngleDown 
+                            className="w-4 h-4 text-gray-500 transition duration-75 
+                            dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"/>
+                        </span>
+                        : <></>
+                    }
                 </button>
         
     }

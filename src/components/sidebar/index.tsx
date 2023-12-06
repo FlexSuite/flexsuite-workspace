@@ -1,13 +1,31 @@
 import { ISidebarItem } from "@/interfaces/ISidebarItem"
-import React from "react"
 
 import { SearchNavbarInput } from "../navbar/SearchNavbarInput"
 import { SidebarItem } from "./SidebarItem"
 import { FaMoneyBillTransfer } from "react-icons/fa6"
 import { BsCashCoin } from "react-icons/bs"
 import { IoSettingsSharp } from "react-icons/io5"
+import { useFlexSuiteNavigation } from "@/context/FlexSuiteNavigation"
+import { useEffect } from "react"
+import { initFlowbite } from "flowbite"
 
 export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
+    
+
+    /*
+        
+        Exemplo de como vai ser a navegação. 
+        Deverá buscar os dados do menu do banco se o usuário tem ou não permissão.
+
+    */
+
+    const context = useFlexSuiteNavigation()
+
+    useEffect(()=> {
+        // eslint-disable-next-line no-console
+        console.log(context)
+        initFlowbite()
+    })
 
     const items: ISidebarItem[] = [
         {
@@ -15,6 +33,14 @@ export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
             label: 'Faturas',
             path: '/revenue/invoices',
             icon: <FaMoneyBillTransfer />,
+            children: [
+                {
+                    id: 22,
+                    label: 'TEste',
+                    path: '/revenue/invoices',
+                    icon: <FaMoneyBillTransfer />,
+                },
+            ]
         },
         {
             id: 2,
