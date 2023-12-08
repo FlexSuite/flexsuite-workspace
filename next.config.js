@@ -12,6 +12,7 @@ const modules = [
     description: "faturamento",
     filename: "fatur-entry.js",
     path: "fatur/module",
+    port: 3002,
   },
 ]
 
@@ -23,7 +24,7 @@ const remote = (isServer) => {
   const location = isServer && false ? "ssr" : "chunks"
 
   const returnObject = {}
-  modules.forEach(({name,filename}) => returnObject[name] = `${name}@http://localhost:3001/_next/static/${location}/${filename}`)
+  modules.forEach(({name,filename,port}) => returnObject[name] = `${name}@http://localhost:${port}/_next/static/${location}/${filename}`)
   return returnObject
 }
 

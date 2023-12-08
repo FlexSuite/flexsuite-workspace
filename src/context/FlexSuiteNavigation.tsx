@@ -26,7 +26,7 @@ const FlexSuiteNavigationContext = createContext<IFlexSuiteNavigationContext | u
   
 const FlexSuiteNavigationProvider: React.FC<{ children: any }> = 
   ({ children }) => {
-  const homePage = FlexSuiteModuleRoutes.Dashboard.Home
+  const homePage = FlexSuiteModuleRoutes.Workspace?.Home
 
   const [isLoading, setIsLoading] = useState<boolean>(true) // [true, false
   const [module, setModule] = useState<NavigationModules | undefined>(undefined)
@@ -52,6 +52,8 @@ const FlexSuiteNavigationProvider: React.FC<{ children: any }> =
     
     // Percorra as rotas para encontrar o módulo e a página correspondentes ao pathname atual
     Object.entries(FlexSuiteModuleRoutes).forEach(([module, pages]) => {
+      if(!pages)
+        return
       // Iterando sobre as páginas do módulo
       Object.keys(pages).forEach((page) => {
         if (pages[page as NavigationPages] === location) {

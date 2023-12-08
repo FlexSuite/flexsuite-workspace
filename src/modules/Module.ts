@@ -18,7 +18,7 @@ export class Module<PagesEnum> implements IModule<PagesEnum> {
     constructor(module: FlexSuiteModules,onLoad?: (mod: Module<PagesEnum>) => void) {
         this.inLoading = true
         switch (module) {
-            case FlexSuiteModules.REVENUE:
+            case FlexSuiteModules.FATUR:
                 this._path = '/revenue'
                 import('fatur/module')
                     .then((mod: IModuleImport) => this.loadData(mod))

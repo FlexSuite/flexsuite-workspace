@@ -1,20 +1,28 @@
 export enum FlexSuiteModules{
-    'DASHBOARD' = 'Dashboard',
-    'REVENUE' = 'Revenue', //Faturamento
+    'WORKS' = 'Workspace',
+    'SECAS' = 'Seguranca_e_Controle_de_Acesso',
+    'FATUR' = 'Faturamento',
+    'ANALY' = 'Analytics_e_Relatorios',
+    'CONTI' = 'Contabilidade',
+    'LOGIS' = 'Logistica',
+    'PRODU' = 'Producao',
+    'REHUM' = 'Recursos_Humanos',
+    'ATEND' = 'Atendimento',
+    'SUPRI' = 'Suprimentos',
 }
 
 export enum FlexSuiteCommonPages{
     'HOME' = 'Home',
 }
 
-export enum FlexSuiteRevenuePages {
-    'BILLING' = 'Billing', //Cobranças
-    'INVOICES' = 'Invoices', //Faturas
-    'SETTINGS' = 'Settings', //Configurações
+export enum FlexSuiteFaturPages {
+    'COBRANCAS' = 'Cobrancas',
+    'FATURAS' = 'Faturas',
+    'CONFIGURACOES' = 'Configuracoes',
 }
 
 export type ModuleRoutes = {
-    [module in NavigationModules]: ModulePages
+    [module in NavigationModules]: ModulePages | undefined
 }
 
 export type ModulePages = {
@@ -24,7 +32,7 @@ export type ModulePages = {
 export type NavigationPages = (
 
         FlexSuiteCommonPages | 
-        FlexSuiteRevenuePages
+        FlexSuiteFaturPages
 
     )
 

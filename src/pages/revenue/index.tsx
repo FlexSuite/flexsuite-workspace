@@ -1,4 +1,4 @@
-import { Revenue } from "@/modules/Revenue/Index"
+import { Fatur } from "@/modules/fatur/Index"
 import { usePathname , useRouter } from "next/navigation"
 import React from "react"
 
@@ -15,11 +15,11 @@ export default function Home() {
 		switch(pathname){
 			default:
 			case "/revenue/invoices":
-				return <Revenue.Invoices/>
+				return <Fatur.Faturas/>
 			case "/revenue/billing":
-				return <Revenue.Billing/>
+				return <Fatur.Cobrancas/>
 			case "/revenue/settings":
-				return <Revenue.Settings/>
+				return <Fatur.Configuracoes/>
 		}
 	}
 

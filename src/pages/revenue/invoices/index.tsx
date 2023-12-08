@@ -1,5 +1,5 @@
-import { Revenue } from "@/modules/Revenue/Index"
+import { Fatur } from "@/modules/fatur/Index"
 
 export default function Invoices() {
-  return <Revenue.Invoices/>
+  return <Fatur.Faturas/>
 }

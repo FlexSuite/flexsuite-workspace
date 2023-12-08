@@ -1,14 +1,14 @@
-import { FlexSuiteRevenuePages } from "@/enum/FlexSuiteNavigation"
+import { FlexSuiteFaturPages } from "@/enum/FlexSuiteNavigation"
 import React, { useEffect } from "react"
-import { RevenueModule } from "../RevenueModule"
+import { FaturModule } from "../FaturModule"
 
-export function Settings(){
+export function Configuracoes(){
     const [ActualPage, setActualPage] = React.useState<any>()
     const [loading, setLoading] = React.useState(true)
 
     useEffect(()=>{
-        new RevenueModule((mod)=>{
-            setActualPage(mod.page(FlexSuiteRevenuePages.SETTINGS))
+        new FaturModule((mod)=>{
+            setActualPage(mod.page(FlexSuiteFaturPages.CONFIGURACOES))
             setLoading(false)
         })
     },[])
