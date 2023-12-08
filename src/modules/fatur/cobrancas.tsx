@@ -1,6 +1,6 @@
 import { FlexSuiteFaturPages } from "@/enum/FlexSuiteNavigation"
 import React, { useEffect } from "react"
-import { FaturModule } from "../FaturModule"
+import { FaturModule } from "./FaturModule"
 
 export function Cobrancas(){
     const [ActualPage, setActualPage] = React.useState<any>()
