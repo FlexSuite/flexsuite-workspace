@@ -8,6 +8,13 @@ const NextFederationPlugin = require("@module-federation/nextjs-mf")
 
 const modules = [
   {
+    name: "secas",
+    description: "segurança",
+    filename: "secas-entry.js",
+    path: "secas/module",
+    port: 3001,
+  },
+  {
     name: "fatur",
     description: "faturamento",
     filename: "fatur-entry.js",
