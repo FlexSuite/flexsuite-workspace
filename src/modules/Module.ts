@@ -25,6 +25,13 @@ export class Module<PagesEnum> implements IModule<PagesEnum> {
                     .catch((err: any) => this.catchError(err))
                     .finally(() => onLoad?.(this))
                 break
+            case FlexSuiteModules.SECAS:
+                this._path = '/security'
+                import('secas/module')
+                    .then((mod: IModuleImport) => this.loadData(mod))
+                    .catch((err: any) => this.catchError(err))
+                    .finally(() => onLoad?.(this))
+                break
             default:
                 this._path = '/unknow'
                 break

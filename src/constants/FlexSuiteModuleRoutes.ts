@@ -1,4 +1,4 @@
-import { FlexSuiteCommonPages, FlexSuiteModules, FlexSuiteFaturPages, ModuleRoutes } from "@/enum/FlexSuiteNavigation"
+import { FlexSuiteCommonPages, FlexSuiteModules, FlexSuiteFaturPages, ModuleRoutes, FlexSuiteSecasPages } from "@/enum/FlexSuiteNavigation"
 
 export const FlexSuiteModuleRoutes: ModuleRoutes = {
     [FlexSuiteModules.WORKS]: {
@@ -10,12 +10,31 @@ export const FlexSuiteModuleRoutes: ModuleRoutes = {
         [FlexSuiteFaturPages.FATURAS]: '/revenue/invoices',
         [FlexSuiteFaturPages.CONFIGURACOES]: '/revenue/settings',
     },
-    [FlexSuiteModules['SECAS']]: undefined,
-    [FlexSuiteModules['ANALY']]: undefined,
-    [FlexSuiteModules['CONTI']]: undefined,
-    [FlexSuiteModules['LOGIS']]: undefined,
-    [FlexSuiteModules['PRODU']]: undefined,
-    [FlexSuiteModules['REHUM']]: undefined,
-    [FlexSuiteModules['ATEND']]: undefined,
-    [FlexSuiteModules['SUPRI']]: undefined
+    [FlexSuiteModules.SECAS]: {
+        [FlexSuiteCommonPages.HOME]: '/security',
+        [FlexSuiteSecasPages.PRESTADORES]: '/security/providers',
+        [FlexSuiteSecasPages.USUARIOS]: '/security/users',
+        [FlexSuiteSecasPages.CONFIGURACOES]: '/security/settings',
+    },
+    [FlexSuiteModules.ANALY]: {
+        [FlexSuiteCommonPages.HOME]: '/analytics',
+    },
+    [FlexSuiteModules.CONTI]: {
+        [FlexSuiteCommonPages.HOME]: '/accounting',
+    },
+    [FlexSuiteModules.LOGIS]: {
+        [FlexSuiteCommonPages.HOME]: '/logistics',
+    },
+    [FlexSuiteModules.PRODU]: {
+        [FlexSuiteCommonPages.HOME]: '/production',
+    },
+    [FlexSuiteModules.REHUM]: {
+        [FlexSuiteCommonPages.HOME]: '/resources',
+    },
+    [FlexSuiteModules.ATEND]: {
+        [FlexSuiteCommonPages.HOME]: '/attendance',
+    },
+    [FlexSuiteModules.SUPRI]: {
+        [FlexSuiteCommonPages.HOME]: '/supplies',
+    },
 }

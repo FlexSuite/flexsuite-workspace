@@ -21,8 +21,14 @@ export enum FlexSuiteFaturPages {
     'CONFIGURACOES' = 'Configuracoes',
 }
 
+export enum FlexSuiteSecasPages {
+    'PRESTADORES' = 'Prestadores',
+    'USUARIOS' = 'Usuarios',
+    'CONFIGURACOES' = 'Configuracoes',
+}
+
 export type ModuleRoutes = {
-    [module in NavigationModules]: ModulePages | undefined
+    [module in NavigationModules]: ModulePages
 }
 
 export type ModulePages = {
@@ -32,8 +38,8 @@ export type ModulePages = {
 export type NavigationPages = (
 
         FlexSuiteCommonPages | 
-        FlexSuiteFaturPages
-
+        FlexSuiteFaturPages |
+        FlexSuiteSecasPages
     )
 
     
