@@ -92,15 +92,49 @@ const FlexSuiteNavigationProvider: React.FC<{ children: any }> =
       // alert('Usuário não tem permissão para acessar essa página')
 
     }
-    // setHasPermission(hasPermission)
+    setHasPermission(hasPermission)
     setHasPermission(true)
+  }
+
+  function navigateTo(path?: string) {
+    if (!path)
+      return
+
+    let moduleFound = undefined
+    let pageFound = undefined
+
+    Object.entries(FlexSuiteModuleRoutes).find(([module, pages]) => {
+      if(!pages)
+        return
+      // Iterando sobre as páginas do módulo
+      Object.keys(pages).forEach((page) => {
+        if (pages[page as NavigationPages] === path) {
+          moduleFound = (module as NavigationModules)
+          pageFound = (page as NavigationPages)
+          return true
+        }
+      })
+    })
+
+    if(!moduleFound || !pageFound){
+      throw new Error(`Não foi possível encontrar a rota ${path}`)
+    }else{      
+      setModule(moduleFound)
+      setPage(pageFound)
+      setRoutes(FlexSuiteModuleRoutes[moduleFound])
+  
+      //Redireciona para a página
+      window.open(path, '_self')
+    }
+
   }
 
   return  <FlexSuiteNavigationContext.Provider value={{ 
     module,
     page,
     routes,
-    allRoutes
+    allRoutes,
+    navigateTo,
    }}>
               {
                 isLoading ?

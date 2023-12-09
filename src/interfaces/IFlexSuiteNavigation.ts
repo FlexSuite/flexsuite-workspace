@@ -24,4 +24,5 @@ export type IFlexSuiteNavigationContext = {
     page: NavigationPages | undefined,
     routes: ModuleRoutes | undefined,
     allRoutes: ModuleRoutes | undefined
+    navigateTo: (path: string | undefined) => void
   }
