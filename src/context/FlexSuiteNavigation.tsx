@@ -16,7 +16,7 @@
 
 import { Loading } from '@/components/loading'
 import { FlexSuiteModuleRoutes } from '@/constants/FlexSuiteModuleRoutes'
-import { NavigationModules, NavigationPages, ModuleRoutes } from '@/enum/FlexSuiteNavigation'
+import { NavigationModules, NavigationPages, ModuleRoutes, FlexSuiteModules } from '@/enum/FlexSuiteNavigation'
 import { IFlexSuiteNavigationContext } from '@/interfaces/IFlexSuiteNavigation'
 import { usePathname } from 'next/navigation'
 import { useState, createContext, useContext, useEffect } from 'react'
@@ -71,6 +71,24 @@ const FlexSuiteNavigationProvider: React.FC<{ children: any }> =
     })
   }, [location])
 
+  useEffect(() => {
+    if (!module || !page)
+      return
+    const moduleKey = Object.keys(FlexSuiteModules).find((key:any) => {
+      const moduleFound = FlexSuiteModules[key as keyof typeof FlexSuiteModules]
+      if (moduleFound === module)
+        return true
+    })
+    document.title = `[${moduleKey}] ${page} - FlexSuite ERP`
+  }, [module, page])
+
+  useEffect(() => {
+    if (!configurations)
+      return
+    //Aplica as configurações
+    //To-Do
+  },[configurations])
+
   const checkConfigurations = () => {
     setConfigurations({
       theme: 'dark',
@@ -120,11 +138,11 @@ const FlexSuiteNavigationProvider: React.FC<{ children: any }> =
       throw new Error(`Não foi possível encontrar a rota ${path}`)
     }else{      
       setIsLoading(true)
-      setModule(moduleFound)
-      setPage(pageFound)
-      setRoutes(FlexSuiteModuleRoutes[moduleFound])  
+      // setModule(moduleFound)
+      // setPage(pageFound)
+      // setRoutes(FlexSuiteModuleRoutes[moduleFound])  
       //Redireciona para a página
-      window.open(path, '_self')
+      window.location.assign(path)
     }
 
   }
