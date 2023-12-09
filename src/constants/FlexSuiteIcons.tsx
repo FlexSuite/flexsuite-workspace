@@ -1,9 +1,9 @@
 import { FlexSuiteCommonPages, FlexSuiteFaturPages, FlexSuiteModules, FlexSuiteSecasPages } from "@/enum/FlexSuiteNavigation"
 import { BiSolidFactory } from "react-icons/bi"
-import { FaChartArea, FaMoneyBillAlt, FaTruckLoading } from "react-icons/fa"
+import { FaChartArea, FaMoneyBillAlt, FaTruckLoading, FaUsers } from "react-icons/fa"
 import { FaCartFlatbed, FaMoneyBillTransfer, FaPeopleGroup } from "react-icons/fa6"
 import { MdOutlineBalance, MdOutlineSecurity } from "react-icons/md"
-import { RiCustomerService2Line } from "react-icons/ri"
+import { RiCustomerService2Line, RiProfileFill } from "react-icons/ri"
 import { LiaFileInvoiceDollarSolid } from "react-icons/lia"
 import { IoSettingsSharp } from "react-icons/io5"
 
@@ -47,8 +47,8 @@ const FlexSuitePageIcons: {
     },
     [FlexSuiteModules.SECAS]: {
         [FlexSuiteCommonPages.HOME]: <></>,
-        [FlexSuiteSecasPages.USUARIOS]: <></>,
-        [FlexSuiteSecasPages.PRESTADORES]: <></>,
+        [FlexSuiteSecasPages.USUARIOS]: <FaUsers />,
+        [FlexSuiteSecasPages.PRESTADORES]: <RiProfileFill/> ,
         [FlexSuiteSecasPages.CONFIGURACOES]: <IoSettingsSharp/>,
     },
     [FlexSuiteModules.FATUR]: { 

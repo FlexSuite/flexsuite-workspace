@@ -3,6 +3,7 @@ import { FlexSuiteModuleRoutes } from "./FlexSuiteModuleRoutes"
 import { FlexSuiteCommonPages, FlexSuiteFaturPages, FlexSuiteModules, FlexSuiteSecasPages } from "@/enum/FlexSuiteNavigation"
 import { FlexSuiteIcons } from "./FlexSuiteIcons"
 import { ISidebarItem } from "@/interfaces/ISidebarItem"
+import { TbLockAccess } from "react-icons/tb"
 
 export const AppMenu: IAppItem[] = [
     
@@ -68,18 +69,25 @@ export const FlexSuiteSidebarItems:{
     [FlexSuiteModules.SECAS]: [
         {
             id: 1,
-            label: "Usuarios",
-            path: FlexSuiteModuleRoutes.Seguranca_e_Controle_de_Acesso.Usuarios,
-            icon: FlexSuiteIcons.getPageIcon(FlexSuiteModules.SECAS,FlexSuiteSecasPages.USUARIOS)
+            label: "Controle de Acesso",
+            icon: <TbLockAccess />,
+            children: [
+                {
+                    id: 2,
+                    label: "Usuarios",
+                    path: FlexSuiteModuleRoutes.Seguranca_e_Controle_de_Acesso.Usuarios,
+                    icon: FlexSuiteIcons.getPageIcon(FlexSuiteModules.SECAS,FlexSuiteSecasPages.USUARIOS)
+                },
+                {
+                    id: 3,
+                    label: "Prestadores",
+                    path: FlexSuiteModuleRoutes.Seguranca_e_Controle_de_Acesso.Prestadores,
+                    icon: FlexSuiteIcons.getPageIcon(FlexSuiteModules.SECAS,FlexSuiteSecasPages.PRESTADORES)
+                },
+            ]
         },
         {
-            id: 2,
-            label: "Prestadores",
-            path: FlexSuiteModuleRoutes.Seguranca_e_Controle_de_Acesso.Prestadores,
-            icon: FlexSuiteIcons.getPageIcon(FlexSuiteModules.SECAS,FlexSuiteSecasPages.PRESTADORES)
-        },
-        {
-            id: 3,
+            id: 4,
             label: "Configuracoes",
             path: FlexSuiteModuleRoutes.Seguranca_e_Controle_de_Acesso.Configuracoes,
             icon: FlexSuiteIcons.getPageIcon(FlexSuiteModules.SECAS,FlexSuiteSecasPages.CONFIGURACOES)
