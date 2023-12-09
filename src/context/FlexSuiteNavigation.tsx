@@ -119,10 +119,10 @@ const FlexSuiteNavigationProvider: React.FC<{ children: any }> =
     if(!moduleFound || !pageFound){
       throw new Error(`Não foi possível encontrar a rota ${path}`)
     }else{      
+      setIsLoading(true)
       setModule(moduleFound)
       setPage(pageFound)
-      setRoutes(FlexSuiteModuleRoutes[moduleFound])
-  
+      setRoutes(FlexSuiteModuleRoutes[moduleFound])  
       //Redireciona para a página
       window.open(path, '_self')
     }
