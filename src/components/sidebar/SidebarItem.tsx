@@ -1,10 +1,12 @@
+import { useFlexSuiteNavigation } from "@/context/FlexSuiteNavigation"
 import { ISidebarItem } from "@/interfaces/ISidebarItem"
 import React from "react"
 import { FaAngleDown } from "react-icons/fa"
 
 export function SidebarItem({ item, isAChild }:{item: ISidebarItem,isAChild?:boolean}) {
     const dropdownId = item.children ? `dropdown-${item.label.replace(" ", "-").toLowerCase()}-${item.id}` : undefined
-
+    const context = useFlexSuiteNavigation()
+    
     return (
         <li>
             <GenerateMenuButton isAChild={isAChild}>
@@ -53,6 +55,11 @@ export function SidebarItem({ item, isAChild }:{item: ISidebarItem,isAChild?:boo
                 className={`${isAChild? 'pl-5': ''} flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}
                 aria-controls={dropdownId}
                 data-collapse-toggle={dropdownId}
+                onClick={()=>{
+                    if(!item.children || (isAChild && !item.children)){
+                        context.navigateTo(item.path)
+                    }
+                }}
                 >
                     {children}
                     {

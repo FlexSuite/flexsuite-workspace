@@ -2,12 +2,11 @@ import { ISidebarItem } from "@/interfaces/ISidebarItem"
 
 import { SearchNavbarInput } from "../navbar/SearchNavbarInput"
 import { SidebarItem } from "./SidebarItem"
-import { FaMoneyBillTransfer } from "react-icons/fa6"
-import { BsCashCoin } from "react-icons/bs"
-import { IoSettingsSharp } from "react-icons/io5"
 import { useFlexSuiteNavigation } from "@/context/FlexSuiteNavigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { initFlowbite } from "flowbite"
+import { FlexSuiteSidebarItems } from "@/constants/FlexSuiteMenu"
+import { FlexSuiteModules } from "@/enum/FlexSuiteNavigation"
 
 export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
     
@@ -20,41 +19,16 @@ export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
     */
 
     const context = useFlexSuiteNavigation()
+    const [items, setItems] = useState<ISidebarItem[] | undefined >(undefined)
 
     useEffect(()=> {
         // eslint-disable-next-line no-console
         console.log(context)
+        // console.log(FlexSuiteSidebarItems[context.module ?? FlexSuiteModules.WORKS])
+        setItems(FlexSuiteSidebarItems[context.module ?? FlexSuiteModules.WORKS])
+        console.log(FlexSuiteSidebarItems[context.module ?? FlexSuiteModules.WORKS])
         initFlowbite()
     })
-
-    const items: ISidebarItem[] = [
-        {
-            id: 1,
-            label: 'Faturas',
-            path: '/revenue/invoices',
-            icon: <FaMoneyBillTransfer />,
-            children: [
-                {
-                    id: 22,
-                    label: 'TEste',
-                    path: '/revenue/invoices',
-                    icon: <FaMoneyBillTransfer />,
-                },
-            ]
-        },
-        {
-            id: 2,
-            label: 'Cobranças',
-            path: '/revenue/billing',
-            icon: <BsCashCoin  />,
-        },
-        {
-            id: 3,
-            label: 'Configurações',
-            path: '/revenue/settings',
-            icon: <IoSettingsSharp />,
-        },
-    ]
 
     return (
         <>
@@ -70,7 +44,8 @@ export function Sidebar({toggleDarkMode}:{toggleDarkMode:()=>void}){
                             <SearchNavbarInput mobile sidebar/>
                         </li>
                         {
-                            items.map(item => <SidebarItem key={`sidebar-item-${item.id}`} item={item}/>)
+                            items && items.length > 0 ? items.map(item => <SidebarItem key={`sidebar-item-${item.id}`} item={item}/>) :
+                            <></>
                         }                    
                     </ul>
                 </div>
