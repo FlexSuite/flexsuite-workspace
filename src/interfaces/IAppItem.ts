@@ -1,6 +1,6 @@
 export interface IAppItem{
     id: number;
     label: string;
-    path: string;
+    path?: string;
     icon?: any;
 }
