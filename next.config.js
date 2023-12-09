@@ -55,5 +55,19 @@ const nextConfig = {
     config.output.publicPath = "http://localhost:3000/"
     return config
   },
+  async redirects(){
+    return [
+      {
+        source: '/security',
+        destination: '/security/users',
+        permanent: true,
+      },
+      {
+        source: '/revenue',
+        destination: '/revenue/invoices',
+        permanent: true,
+      },
+    ]
+  }
 }
 module.exports = nextConfig
